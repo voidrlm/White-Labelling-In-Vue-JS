@@ -15,12 +15,28 @@
         }}</v-icon
       >{{ getGreetingData }}, User!</v-card-title
     >
+
+    <v-card-title class="mt-2 justify-center">{{ organisation }}</v-card-title>
+    <v-row class="justify-center">
+      <v-img
+        :src="require(`../../organisations/${organisationDirectory}/logo.png`)"
+        :max-height="'200'"
+        :max-width="'200'"
+      />
+    </v-row>
+    <div class="text-center mt-5 caption">
+      {{ organisationEnvironment.toUpperCase() }}
+    </div>
   </v-container>
 </template>
 <script>
 export default {
   name: "dashboard-component",
-  data: () => ({}),
+  data: () => ({
+    organisation: process.env.VUE_APP_ORGANISATION_NAME,
+    organisationDirectory: process.env.VUE_APP_DIRECTORY,
+    organisationEnvironment: process.env.NODE_ENV,
+  }),
   computed: {
     getGreetingData() {
       var today = new Date();
